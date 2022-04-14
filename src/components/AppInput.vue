@@ -1,14 +1,14 @@
 <template>
   <div class="form-control" :class="{invalid: error}">
-        <label for="name">{{ label }}</label>
+        <label :for="id">{{ label }}</label>
         <input 
           type="text" 
-          id="name" 
+          :id="id" 
           :placeholder="placeholder"
           :value="inputValue"
           @input="change"
           >
-          <small v-if="error"> {{error}} </small>
+          <small v-if="error"> {{ error }} </small>
       </div>
 </template>
 
@@ -19,11 +19,13 @@ export default {
         label: String,
         placeholder: String,
         inputValue: String
-
     },
     methods: {
         change(event) {
             this.$emit('update:inputValue', event.target.value)
+        },
+        id() {
+            return 'name' + Math.random()
         }
     }
 }
