@@ -2,7 +2,7 @@
   <div class="container">
     <form class="card" @submit.prevent="submitHandler">
       <h1>Анкета на Vue разработчика!</h1>
-      <div class="form-control">
+      <div class="form-control" :class="{invalid: errors.title}">
         <label for="name">Как тебя зовут?</label>
         <input 
           type="text" 
@@ -10,6 +10,7 @@
           placeholder="Введи имя"
           v-model.trim="name"
           >
+          <small v-if="errors.title"> {{errors.title}} </small>
       </div>
 
       <div class="form-control">
@@ -63,19 +64,36 @@
 
 <script>
   export default {
-    methods: {
+     data() {
+        return {
+          name: '',
+          age: 23,
+          city: 'kzn',
+          relocate: 'yes',
+          skills: [],
+          errors: {
+            title: null
+          }
+        }
+      },
+     methods: { 
+      formIsValid() {
+          let isValid = true
+
+          if (this.name.length === 0) {
+            this.errors.title = 'Имя не может быть пустым'
+            isValid = false
+          } else {
+            this.errors.title = null
+          }
+          return isValid
+      },
+
       submitHandler() {
+        if (this.formIsValid()) {
         console.log(this.name, this.city, this.relocate, this.skills)
-      }
-    },
-    data() {
-      return {
-        name: '',
-        age: 23,
-        city: 'kzn',
-        relocate: '',
-        skills: []
-      }
+        }
+      },
     }
   }
 </script>
@@ -346,4 +364,11 @@ h3 {
     background: rgba(0, 0, 0, .35);
 }
 
+.form-control small {
+  color: #e53935;
+}
+
+.form-control.invalid input {
+  border-color: #e53935;
+}
 </style>
