@@ -86,13 +86,13 @@
           }
           return isValid
       },
-
       submitHandler() {
         if (this.formIsValid()) {
         console.log(this.name, this.age, this.city, this.relocate, this.skills)
         }
       },
     },
+
     components: {
       AppInput
     }

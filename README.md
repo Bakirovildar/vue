@@ -5,20 +5,12 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Работа с формами
 ```
-npm run serve
+1. Добавил v-model(number, trim) для полей Имя и Возраст
+2. Добавил v-model для select
+3. Добавил v-model для radio и checkbox
+4. Добавил валидацию для поля Имя
+5. Вывел в отдельный компонент поле Имя
+6. Добавил сгенерированный id для поля Имя
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
