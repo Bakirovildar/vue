@@ -22,8 +22,18 @@ export default {
     }
   },
   methods: {
-    createPerson() {
-      console.log(this.name);
+    async createPerson() {
+     const response = await fetch('https://data-base-a1f04-default-rtdb.firebaseio.com/people.json', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify( {
+              firstName: this.name
+          })
+      })
+      const fireBaseData = await response.json()
+      console.log(fireBaseData)
     }
   }
 }
