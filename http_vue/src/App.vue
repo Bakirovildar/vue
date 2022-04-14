@@ -12,14 +12,26 @@
     <button class="btn primary" :disabled="name.length === 0">Добавить</button>
     </form>
   </div>
+
+  <app-people 
+     :people="people"
+     @action="loadPeople"
+  ></app-people>
 </template>
 
 <script>
+import AppPeople from './components/AppPeopleList.vue'
+import axios from 'axios'
+
 export default {
   data() {
     return {
-      name: ''
+      name: '',
+      people: []
     }
+  },
+  components: {
+      AppPeople
   },
   methods: {
     async createPerson() {
@@ -34,7 +46,19 @@ export default {
       })
       const fireBaseData = await response.json()
       console.log(fireBaseData)
-    }
+      this.name = ''
+    },
+    
+     async loadPeople() {
+        const {data} = await axios.get('https://data-base-a1f04-default-rtdb.firebaseio.com/people.json')
+        this.people = Object.keys(data).map(key => {
+            return {
+                id: key,
+                firstName: data[key].firstName
+            }
+        })
+     }
+
   }
 }
 </script>
