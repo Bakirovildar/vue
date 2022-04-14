@@ -24,7 +24,7 @@
 
       <div class="form-control">
         <label for="city">Твой город</label>
-        <select id="city">
+        <select id="city" v-model="city">
           <option value="spb">Санкт-Петербург</option>
           <option value="msk">Москва</option>
           <option value="kzn">Казань</option>
@@ -65,13 +65,14 @@
   export default {
     methods: {
       submitHandler() {
-        console.log(this.name, typeof this.age)
+        console.log(this.name, this.city)
       }
     },
     data() {
       return {
         name: '',
         age: 23,
+        city: 'kzn'
       }
     }
   }
