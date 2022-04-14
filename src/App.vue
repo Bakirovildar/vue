@@ -8,13 +8,18 @@
           type="text" 
           id="name" 
           placeholder="Введи имя"
-          v-model="name"
+          v-model.trim="name"
           >
       </div>
 
       <div class="form-control">
         <label for="age">Выбери возраст</label>
-        <input type="number" id="age" value="20">
+        <input 
+          type="number" 
+          id="age" 
+          nax="70"
+          v-model.number="age"
+          >
       </div>
 
       <div class="form-control">
@@ -60,12 +65,13 @@
   export default {
     methods: {
       submitHandler() {
-        console.log(this.name)
+        console.log(this.name, typeof this.age)
       }
     },
     data() {
       return {
-        name: ''
+        name: '',
+        age: 23,
       }
     }
   }
