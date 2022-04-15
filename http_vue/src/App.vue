@@ -60,6 +60,7 @@ export default {
           id: fireBaseData.name
       })
       this.name = ''
+      this.alert = null
     },
     
      async loadPeople() {
@@ -85,8 +86,19 @@ export default {
      },
 
      async removePeople(id) {
-         await axios.delete(`https://data-base-a1f04-default-rtdb.firebaseio.com/people/${id}.json`)
-         this.people = this.people.filter(person => person.id !== id)
+         try{
+            const name = this.people.filter(person => person.id === id)
+            await axios.delete(`https://data-base-a1f04-default-rtdb.firebaseio.com/people/${id}.json`)
+            this.people = this.people.filter(person => person.id !== id)
+            this.alert = {
+                type: 'primary',
+                title: 'Успешно',
+                text: `Пользователь ${name[0].firstName} был удален`
+            }
+         } catch(e) {
+            console.log(e.message)
+         }
+         
      } 
   }
 }
