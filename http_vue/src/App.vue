@@ -20,7 +20,7 @@
      :people="people"
      @action="loadPeople"
      @removePeople='removePeople'
-  ></app-people>
+  />
 </template>
 
 <script>
