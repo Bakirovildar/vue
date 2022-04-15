@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     submitForm() {
-      // console.log(this.valueText)
+      console.log(this.valueText)
     },
     changeSelect(value) {
       this.selectValue = value
@@ -37,12 +37,6 @@ export default {
     changeText(value) {
       this.valueText = value
       // console.log(this.valueText)
-    }
-  },
-  provide() {
-    return {
-      selectValue: this.selectValue,
-      valueText: this.valueText
     }
   }
 }
