@@ -19,6 +19,7 @@
   <AppLoader v-if="loader === true"/>
 
   <app-people 
+     v-else
      :people="people"
      @action="loadPeople"
      @removePeople='removePeople'
@@ -50,6 +51,7 @@ export default {
   },
   methods: {
     async createPerson() {
+      this.loader = true
       const response = await fetch('https://data-base-a1f04-default-rtdb.firebaseio.com/people.json', {
           method: 'POST',
           headers: {
@@ -66,6 +68,7 @@ export default {
       })
       this.name = ''
       this.alert = null
+      this.loader = false
     },
     
      async loadPeople() {
