@@ -1,9 +1,12 @@
 <template>
 <div v-if="people.length !==0">
-        <div v-for="item in people" :key="item">{{ item.firstName }}</div>   
+    <div class="card center person" v-for="item in people" :key="item">
+        <h2>{{ item.firstName }}</h2>   
+        <button class="btn danger" @click="$emit('removePeople', item.id)">Удалить</button>
+    </div>
 </div>
 
-<div v-else class="center">
+<div v-else class="card center">
     <h4>Список пуст</h4>
     <button class="btn primary" @click="$emit('action')">Загрузить список</button>
 </div>
@@ -13,13 +16,10 @@
 <script>
 export default {
    props: ['people'],
-   emits: ['action']
+   emits: ['action', 'removePeople']
 }
 </script>
 
 <style scoped>
-    *{
-        color: white;
-        list-style: none;
-    }
+
 </style>

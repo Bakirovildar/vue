@@ -16,6 +16,7 @@
   <app-people 
      :people="people"
      @action="loadPeople"
+     @removePeople='removePeople'
   ></app-people>
 </template>
 
@@ -29,6 +30,9 @@ export default {
       name: '',
       people: []
     }
+  },
+  mounted() {
+      this.loadPeople()
   },
   components: {
       AppPeople
@@ -45,7 +49,10 @@ export default {
           })
       })
       const fireBaseData = await response.json()
-      console.log(fireBaseData)
+      this.people.push({
+          firstName: this.name,
+          id: fireBaseData.name
+      })
       this.name = ''
     },
     
@@ -57,8 +64,12 @@ export default {
                 firstName: data[key].firstName
             }
         })
-     }
+     },
 
+     async removePeople(id) {
+         await axios.delete(`https://data-base-a1f04-default-rtdb.firebaseio.com/people/${id}.json`)
+         this.people = this.people.filter(person => person.id !== id)
+     } 
   }
 }
 </script>
