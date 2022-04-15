@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+
+    <app-alert :alert="alert" @close="alert = null"></app-alert>
+
     <form class="card" @submit.prevent="createPerson">
       <div class="card">
       <h2>Работа с базой данных</h2>
@@ -22,24 +25,27 @@
 
 <script>
 import AppPeople from './components/AppPeopleList.vue'
+import AppAlert from './components/AppAlert.vue'
 import axios from 'axios'
 
 export default {
   data() {
     return {
       name: '',
-      people: []
+      people: [],
+      alert: null
     }
   },
   mounted() {
       this.loadPeople()
   },
   components: {
-      AppPeople
+      AppPeople,
+      AppAlert
   },
   methods: {
     async createPerson() {
-     const response = await fetch('https://data-base-a1f04-default-rtdb.firebaseio.com/people.json', {
+      const response = await fetch('https://data-base-a1f04-default-rtdb.firebaseio.com/people.json', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -57,13 +63,25 @@ export default {
     },
     
      async loadPeople() {
-        const {data} = await axios.get('https://data-base-a1f04-default-rtdb.firebaseio.com/people.json')
-        this.people = Object.keys(data).map(key => {
+         try {
+             const {data} = await axios.get('https://data-base-a1f04-default-rtdb.firebaseio.com/people.json')
+
+             if(!data) {
+                 throw new Error('Список пуст')
+             }
+             this.people = Object.keys(data).map(key => {
             return {
                 id: key,
                 firstName: data[key].firstName
             }
         })
+        } catch(e) {
+            this.alert = {
+                type: 'danger',
+                title: 'Ошибка',
+                text: e.message
+            }
+         }
      },
 
      async removePeople(id) {
