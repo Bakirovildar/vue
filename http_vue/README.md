@@ -5,20 +5,9 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Работа с HTTP запросами
 ```
-npm run serve
+HTTP, POST запрос в firebase, добавил имя
+HTTP, GET запрос и их отрисовка
+Добавил запрос delete
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
