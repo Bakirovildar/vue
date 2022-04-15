@@ -16,6 +16,8 @@
     </form>
   </div>
 
+  <AppLoader v-if="loader === true"/>
+
   <app-people 
      :people="people"
      @action="loadPeople"
@@ -26,6 +28,7 @@
 <script>
 import AppPeople from './components/AppPeopleList.vue'
 import AppAlert from './components/AppAlert.vue'
+import AppLoader from './components/AppLoader.vue'
 import axios from 'axios'
 
 export default {
@@ -33,7 +36,8 @@ export default {
     return {
       name: '',
       people: [],
-      alert: null
+      alert: null,
+      loader: false
     }
   },
   mounted() {
@@ -41,7 +45,8 @@ export default {
   },
   components: {
       AppPeople,
-      AppAlert
+      AppAlert,
+      AppLoader
   },
   methods: {
     async createPerson() {
@@ -65,8 +70,8 @@ export default {
     
      async loadPeople() {
          try {
+             this.loader = true
              const {data} = await axios.get('https://data-base-a1f04-default-rtdb.firebaseio.com/people.json')
-
              if(!data) {
                  throw new Error('Список пуст')
              }
@@ -76,12 +81,14 @@ export default {
                 firstName: data[key].firstName
             }
         })
+        this.loader = false
         } catch(e) {
             this.alert = {
                 type: 'danger',
                 title: 'Ошибка',
                 text: e.message
             }
+            this.loader = false
          }
      },
 
