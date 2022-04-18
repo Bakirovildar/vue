@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn primary">Отправить</button>
+      <button type="submit" class="btn primary" @click="$alert('Hello')">Отправить</button>
     </form>
   </div>
 </template>
