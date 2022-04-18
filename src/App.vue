@@ -17,6 +17,7 @@
           id="age" 
           nax="70"
           v-model.number="age"
+          v-color:background="'aqua'"
           >
       </div>
 
@@ -62,8 +63,12 @@
 <script>
   import AppInput from './components/AppInput.vue'
   import AppMixins from './AppMixins'
+  import AppDirectives from './AppDirectives'
   export default {
     mixins: [AppMixins],
+    directives: {
+      color: AppDirectives
+    },
     components: {
       AppInput
     }
