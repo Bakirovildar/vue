@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <form class="card" @submit.prevent="submitHandler">
-      <h1>Анкета на Vue разработчика!</h1>
+      <h1>{{ $ild14('type.title') }}</h1>
       
       <AppInput
         :error="errors.title"
@@ -55,7 +55,8 @@
         </div>
       </div>
 
-      <button type="submit" class="btn primary" @click="$alert('Hello')">Отправить</button>
+      <button type="submit" class="btn primary" @click="$ild14(changeLang)">Отправить</button>
+      <button type="button" class="btn primary" @click="$ild14(changeLang)">Отправить</button>
     </form>
   </div>
 </template>
@@ -65,6 +66,13 @@
   import AppMixins from './AppMixins'
   import AppDirectives from './AppDirectives'
   export default {
+    inject: ['changeIld14'],
+    methods: {
+        changeLang() {
+            this.changeIld14('en'),
+            this.$forceUpdate()
+        }
+    },
     mixins: [AppMixins],
     directives: {
       color: AppDirectives

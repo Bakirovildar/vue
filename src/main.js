@@ -4,6 +4,18 @@ import translatePlugin from './translatePlugin'
 
 const app = createApp(App)
 
-app.use(translatePlugin)
+const ru = {
+    type: {
+        title: 'Анкета Vue разработчика'
+    }
+}
+
+const en = {
+    type: {
+        title: 'Questionnaire Vue developer'
+    }
+}
+
+app.use(translatePlugin, {ru, en})
 
 app.mount('#app')
