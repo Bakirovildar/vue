@@ -56,8 +56,12 @@
       </div>
 
       <button type="submit" class="btn primary" @click="$ild14(changeLang)">Отправить</button>
-      <button type="button" class="btn primary" @click="$ild14(changeLang)">Отправить</button>
+      <button type="button" class="btn primary" @click="modalWindow = true">Открыть модальное окно</button>
     </form>
+
+    <teleport to='body'>
+         <app-modal v-if="modalWindow" @closeModal='modalWindow = false'></app-modal>
+    </teleport>
   </div>
 </template>
 
@@ -65,8 +69,14 @@
   import AppInput from './components/AppInput.vue'
   import AppMixins from './AppMixins'
   import AppDirectives from './AppDirectives'
+  import AppModal from './components/AppModal.vue';
   export default {
     inject: ['changeIld14'],
+    data() {
+        return {
+        modalWindow: false
+        }
+    },
     methods: {
         changeLang() {
             this.changeIld14('en'),
@@ -78,7 +88,8 @@
       color: AppDirectives
     },
     components: {
-      AppInput
+      AppInput,
+      AppModal
     }
   }
 </script>
