@@ -10,6 +10,14 @@
 
 <script>
 export default {
+  beforeRouteLeave(to, from, next) {
+    const answer = confirm('Точно перейти ?')
+    if(answer) {
+      next()
+    } else {
+      next(false)
+    }
+  } 
 }
 </script>
 
