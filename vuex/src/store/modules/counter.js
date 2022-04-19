@@ -1,6 +1,4 @@
-import { createStore } from "vuex";
-
-export default createStore({
+export default {
     state() {
         return {
             counter: 1
@@ -18,10 +16,11 @@ export default createStore({
     },
 
     actions: {
-        incrementAsync(context){
+        incrementAsync(context, payload){
             setTimeout(()=> {
                 context.commit('add', {
-                    value: 100
+                    value: payload.value,
+                    
                 })
             }, 1000)
         }
@@ -30,6 +29,9 @@ export default createStore({
     getters: {
         counter(state)  {
             return state.counter
+        },
+        doubleCounter(state) {
+            return state.counter * 2
         }
     }
-})
+}
