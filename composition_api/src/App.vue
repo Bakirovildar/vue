@@ -1,26 +1,51 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="card">
+    <h1>Данные</h1>
+    <p>{{ framework.name }}</p>
+    <p> версия {{ framework.version }} | {{ doubleNum }} </p>
+    <button class="btn" @click="changeName">Изменить</button>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, computed, watch } from 'vue'
+import './theme.css'
 
 export default {
-  name: 'App',
+  setup() {
+    const framework = ref({
+      name: 'VueJs',
+      version: 3
+    })
+
+    const changeName = () => {
+      framework.value.name = 'Vue JS'
+      framework.value.version = 44
+    }
+
+    const doubleNum = computed(() => {
+      return framework.value.version * 2
+    })
+
+    watch(doubleNum,(newValue, oldValue)=>{
+        if(newValue === 88) {
+          framework.value.name = 'Hi, how are you?'
+        }
+        console.log(oldValue)
+    })
+
+    return {
+      framework,
+      changeName,
+      doubleNum
+    }
+  },
   components: {
-    HelloWorld
+
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
