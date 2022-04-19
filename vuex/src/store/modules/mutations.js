@@ -1,9 +1,8 @@
 export default {
-    increment(state) {
-        state.counter++
-    },
-
-    add(state, payload) {
+    addCount(state, payload) {
         state.counter += payload.value
+    },
+    add(state) {
+        state.counter += 100
     }
 }

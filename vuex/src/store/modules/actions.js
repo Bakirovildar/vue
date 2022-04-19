@@ -1,10 +1,7 @@
 export default  {
-    incrementAsync(context, payload){
-        setTimeout(()=> {
-            context.commit('add', {
-                value: payload.value,
-                
-            })
+    incrementAsync(context) {
+        setTimeout(() => {
+            context.commit('add')
         }, 1000)
     }
 }

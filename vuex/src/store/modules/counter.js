@@ -6,17 +6,14 @@ export default {
 
     state() {
         return {
-            counter: 1
+            counter: 0
         }
-    },  
+    },
     mutations,
     actions,
     getters: {
-        counter(state)  {
+        count(state) {
             return state.counter
-        },
-        doubleCounter(state) {
-            return state.counter * 2
         }
     }
 }

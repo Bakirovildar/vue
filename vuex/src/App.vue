@@ -2,10 +2,10 @@
   <div class="container with-nav">
     <the-navbar></the-navbar>
     <div class="card">
-      <h1>{{ titleApp }}</h1>
-      <h2>Счетчик {{ counter }} ({{doubleCounter}})</h2>
-      <button class="btn" @click="add({value:1})">Плюс 1</button>
-      <button class="btn danger" @click="incrementAsync({value:10000})">Плюс 1</button>
+      <h1>Vue js</h1>
+      <h2>Счетчик {{count }}</h2>
+      <button class="btn" @click="addCount({value:1})">Плюс 1</button>
+      <button class="btn danger" @click="incrementAsync({value: 12})">Плюс 1</button>
     </div>
   </div>
 </template>
@@ -16,18 +16,18 @@ import TheNavbar from './TheNavbar.vue'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
-  name: 'App',
   components: {
     TheNavbar
-},
-computed: {
-  ...mapGetters('counterModuls', ['counter', 'doubleCounter']),
-  ...mapGetters(['titleApp'])
-},
-methods: {
-  ...mapMutations('counterModuls',['add']),
-  ...mapActions('counterModuls',['incrementAsync']),
-}
+  },
+
+  computed: {
+    ...mapGetters('counter',['count'])
+  },
+
+  methods: {
+    ...mapMutations('counter',['addCount']),
+    ...mapActions('counter',['incrementAsync'])
+  }
 }
 </script>
 
