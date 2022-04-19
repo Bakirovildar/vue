@@ -1,31 +1,16 @@
+import mutations from "./mutations"
+import actions from "./actions"
+
 export default {
+    namespaced: true,
+
     state() {
         return {
             counter: 1
         }
-    },
-    
-    mutations: {
-        increment(state) {
-            state.counter++
-        },
-
-        add(state, payload) {
-            state.counter += payload.value
-        }
-    },
-
-    actions: {
-        incrementAsync(context, payload){
-            setTimeout(()=> {
-                context.commit('add', {
-                    value: payload.value,
-                    
-                })
-            }, 1000)
-        }
-    },
-
+    },  
+    mutations,
+    actions,
     getters: {
         counter(state)  {
             return state.counter
