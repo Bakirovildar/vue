@@ -1,6 +1,6 @@
 <template>
   <header class="navbar">
-       <h1> {{ $store.state.counter }} </h1>
+       <h1> {{ $store.getters.counter }} </h1>
        <button class="btn" @click="add">Добавить</button>
   </header>
 </template>

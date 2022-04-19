@@ -15,5 +15,11 @@ export default createStore({
         add(state, payload) {
             state.counter += payload.value
         }
+    },
+
+    getters: {
+        counter(state)  {
+            return state.counter
+        }
     }
 })

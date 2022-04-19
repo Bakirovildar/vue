@@ -3,7 +3,7 @@
     <the-navbar></the-navbar>
     <div class="card">
       <h1>Про Vuex</h1>
-      <h2>Счетчик {{ count }}</h2>
+      <h2>Счетчик {{ count }} ({{$store.getters.counter * 2}})</h2>
       <button class="btn" @click="increment">Плюс 1</button>
     </div>
   </div>
@@ -17,14 +17,9 @@ export default {
   components: {
     TheNavbar
 },
-data() {
-  return {
-    counter: 0
-  }
-},
 computed: {
   count() {
-    return this.$store.state.counter
+    return this.$store.getters.counter
   }
 },
 methods: {
