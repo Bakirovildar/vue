@@ -5,6 +5,7 @@
       <h1>Про Vuex</h1>
       <h2>Счетчик {{ count }} ({{$store.getters.counter * 2}})</h2>
       <button class="btn" @click="increment">Плюс 1</button>
+      <button class="btn danger" @click="incrementAsync">Плюс 1</button>
     </div>
   </div>
 </template>
@@ -25,6 +26,9 @@ computed: {
 methods: {
   increment() {
     this.$store.commit('increment')
+  },
+  incrementAsync() {
+    this.$store.dispatch('incrementAsync')
   }
 }
 }
